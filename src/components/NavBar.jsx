@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Container, Menu } from 'semantic-ui-react';
 
 const pages = [
   {
@@ -17,21 +18,16 @@ const pages = [
 
 const NavBar = () => {
   return (
-    <header>
-        <div className='header-logo'>
-            <a href='#'>Website</a>
-        </div>
-        <input type='checkbox' id='toggle-nav'/>
-        <label htmlFor='toggle-nav' className='show-nav-menu'>Boton</label>
-
-        <nav>
-            <ul>
+    <Menu fixed='top' inverted>
+      <Container>
+        <Menu.Item header>
+            Radio Web Directory
+        </Menu.Item>
             {pages.map((page, i) => (
-              <li key={i}><Link to={page.path}>{page.text}</Link></li>
+              <Menu.Item as={Link} to={page.path} key={i}>{page.text}</Menu.Item>
             ))}
-            </ul>
-        </nav>
-    </header>
+        </Container>
+    </Menu>
   );
 }
 export default NavBar;

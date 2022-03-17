@@ -7,7 +7,8 @@ export const stationSlice = createSlice({
       name: '',
       homepage: '',
       tags: [],
-      urlResolved: ''
+      urlResolved: '',
+      favicon: ''
   },
   reducers: {
     updateStation: (state, action) => {
@@ -18,6 +19,7 @@ export const stationSlice = createSlice({
         state.homepage = stationPayload.homepage;
         state.tags = stationPayload.tags;
         state.urlResolved = stationPayload.url_Resolved;
+        state.favicon = stationPayload.favicon;
     }
   }
 })

@@ -1,9 +1,15 @@
 import React from 'react';
+import { Menu } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
 const RadioImage = ({url}) => {
-    return <div id='radio-image' className='radio-image-slot'>
-        <img src={url} className='radio-image' alt='radio' />
-    </div>
+    return  <Menu.Item>
+                <img src={url} alt='radio' />
+            </Menu.Item>
+}
+
+RadioImage.propTypes = {
+    url: PropTypes.string
 }
 
 export default RadioImage;
