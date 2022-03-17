@@ -1,12 +1,13 @@
-import React from 'react';
+import { RadioBrowserApi } from 'radio-browser-api';
+import React, { useEffect, useState } from 'react';
 
-const SearchTags = (props) => {
-    const RadioBrowser = require('radio-browser')
+const SearchTags = ({selectAction}) => {
+    const api = new RadioBrowserApi('BeduReactFinalsDEFQ/1.0');
 
     let [tags, setTags] = useState([]);
 
     useEffect(() => {
-        RadioBrowser.getCategory('tags')
+        api.getTags()
             .then(data => setTags(data))
             .catch(error => console.error(error))
     }, []);
@@ -20,7 +21,7 @@ const SearchTags = (props) => {
         <label htmlFor='searchTag'>Palabra clave:</label>
         <input type="text" name="searchTag" id="searchTag" list="tagSuggestions" onChange={updateFilter}/>
         <datalist id="tagSuggestions">
-            {tags.map((tag) => (<option>{tag.name}</option>))}
+            {tags.map((tag, i) => (<option key={i}>{tag.name}</option>))}
         </datalist>
     </div>
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 
-const RadioPlay = () => {
-    return <button onClick={this.props.action}>Play</button>
+const RadioPlay = ({playAudio}) => {
+    return <button onClick={() => playAudio(true)}>Play</button>
 }
 
 export default RadioPlay;

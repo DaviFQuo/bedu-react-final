@@ -1,29 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import RadioImage from './media-control/RadioImage';
 import RadioInfo from './media-control/RadioInfo';
 import RadioPlay from './media-control/RadioPlay';
-import RadioRandom from './media-control/RadioRandom';
+import RadioStop from './media-control/RadioStop';
+import { useSelector } from 'react-redux';
 
-class RadioPlayer extends Component {
-    constructor (props) {
-      super(props)
-      this.state = { visible: true }
+const RadioPlayer = () => {
+    const station = useSelector((state) => state.stationState);
+
+    let [ isPlaying, setPlaying ] = useState(false);
+
+    const playStation = (playAudio) => {
+        if(station.name.length > 0){
+            console.log(station)
+        }
+        setPlaying(playAudio);
     }
 
-    render(){
-        return <div className='radio-player'>
-            <RadioPlay />
-            <RadioStop />
-            <RadioImage />
-            <RadioInfo />
-            <RadioRandom />
+    return <div className='radio-player'>
+        {!isPlaying && <RadioPlay playAudio={playStation} />}
+        {isPlaying && <RadioStop playAudio={playStation} />}
+        {station.url.length > 0 && <RadioImage url={station.url} />}
+        {station.url.length > 0 ? <RadioInfo station={station} /> : <div>Favor de seleccionar una estación para reproducirlo</div>}
 
-            <audio>
-                <source src="http://relay.publicdomainradio.org/classical.mp3" type="audio/mpeg" />
-            </audio>
-        </div>
-    }
-    
+        {station.url.length > 0 && <audio>
+            <source src={station.urlResolved ? station.urlResolved : station.url} />
+        </audio>}
+    </div>
 }
 
 export default RadioPlayer;

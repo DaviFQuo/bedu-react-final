@@ -1,7 +1,7 @@
 import React from 'react';
 
-const RadioRandom = () => {
-    return <button onClick={this.props.action}>Random</button>
+const RadioRandom = (props) => {
+    return <button onClick={() => props.action()}>Random</button>
 }
 
 export default RadioRandom;

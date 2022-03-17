@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const pages = [
   {
@@ -6,8 +7,8 @@ const pages = [
     path: '/'
   }, 
   {
-    text: 'Search', 
-    path: '/search'
+    text: 'Browse', 
+    path: '/browse'
   }, 
   {
     text: 'About', 
@@ -25,13 +26,13 @@ const NavBar = () => {
 
         <nav>
             <ul>
-            {pages.map((page) => (
-              <li><Link to={page.path}>{page.text}</Link></li>
+            {pages.map((page, i) => (
+              <li key={i}><Link to={page.path}>{page.text}</Link></li>
             ))}
             </ul>
         </nav>
     </header>
   );
-};
+}
 export default NavBar;
 //Based from https://www.markuptag.com/responsive-navbar-with-html-css-without-bootstrap/

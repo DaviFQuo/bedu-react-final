@@ -1,7 +1,7 @@
 import React from 'react';
 
-const RadioStop = () => {
-    return <button onClick={this.props.action}>Play</button>
+const RadioStop = ({playAudio}) => {
+    return <button onClick={() => playAudio(false)}>Stop</button>
 }
 
 export default RadioStop;

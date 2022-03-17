@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { RadioBrowserApi } from 'radio-browser-api'
 
 const SearchCodecs = ({selectAction}) => {
-    const RadioBrowser = require('radio-browser')
+    const api = new RadioBrowserApi('BeduReactFinalsDEFQ/1.0');
 
     let [codecs, setCodecs] = useState([]);
 
     useEffect(() => {
-        RadioBrowser.getCategory('codecs')
+        api.getCodecs()
             .then(data => setCodecs(data))
             .catch(error => console.error(error))
     }, []);
@@ -24,7 +25,7 @@ const SearchCodecs = ({selectAction}) => {
         <label htmlFor='searchCodec'>Codec:</label>
         <select id='searchCodec' name='searchCodec' onChange={updateFilter}>
             <option value={-1}>-- Codecs --</option>
-            {codecs.map((codec, i) => (<option value={i}>{codec.name}({codec.stationcount})</option>))}
+            {codecs.map((codec, i) => (<option key={i} value={i}>{codec.name}({codec.stationcount})</option>))}
         </select>
     </div>
 }
